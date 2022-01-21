@@ -1,0 +1,25 @@
+{
+  "name": "api-testing-cypress",
+  "version": "1.0.0",
+  "description": "Projeto de estudo em automação de testes utilizando Cypress e Joi",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaoalfredopires/API-Testing-Cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaoalfredopires/API-Testing-Cypress/issues"
+  },
+  "homepage": "https://github.com/joaoalfredopires/API-Testing-Cypress#readme",
+  "devDependencies": {
+    "@hapi/joi": "^17.1.1",
+    "cypress": "^4.4.0"
+  }
+}

@@ -1,4 +1,12 @@
 {
     "baseUrl": "https://treinamento-api.herokuapp.com/",
-    "video": false
+    "video": false,
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportDir": "mochawesome-report/json",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "charts": true
+    }
 }

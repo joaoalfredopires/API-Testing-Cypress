@@ -2,7 +2,7 @@
 
 describe('Put Booking', () => {
 
-    it('Alterar uma reserva usando token', () => {
+    it('Alterar uma reserva usando token - @acceptance', () => {
         cy.token().then((respostaToken) => {
             cy.log(respostaToken.body.token)
             cy.allBookings().then((respostaAllBookings) => {

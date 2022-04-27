@@ -6,6 +6,10 @@
   "scripts": {
     "cy:open": "cypress open",
     "cy:run": "cypress run",
+    "cy:run-contracts": "cypress run --env grep=@contracts",
+    "cy:run-acceptance": "cypress run --env grep=@acceptance",
+    "cy:run-healthcheck": "cypress run --env grep=@healthcheck",
+    "cy:run-e2e": "cypress run --env grep=@e2e",
     "cy:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen --showPending=false --cdn=true",
     "cy:clean-report": "rm -rf mochawesome-report"
   },
@@ -22,9 +26,10 @@
   "homepage": "https://github.com/joaoalfredopires/API-Testing-Cypress#readme",
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
-    "cypress": "^4.4.0",
+    "cypress": "4.12.1",
+    "cypress-select-tests": "^1.7.1",
     "mocha": "^7.1.1",
-    "mochawesome": "^6.1.0",
+    "mochawesome": "^7.1.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

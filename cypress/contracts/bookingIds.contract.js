@@ -6,4 +6,5 @@ const bookingIdsSchema = Joi.array().items(
     })
 );
 
+
 export default bookingIdsSchema;

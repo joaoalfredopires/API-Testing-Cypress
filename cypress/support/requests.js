@@ -8,6 +8,22 @@ Cypress.Commands.add('allBookings', () => {
     })
 });
 
+Cypress.Commands.add('healthCheck', () => {
+    cy.request({
+        method: "GET",
+        url: '/ping',
+        failOnStatusCode: false
+    })
+});
+
+Cypress.Commands.add('specificBooking', (bookingID) => {
+    cy.request({
+        method: "GET",
+        url: `/booking/${(bookingID)}`,
+        failOnStatusCode: false
+    })
+});
+
 
 //POST
 
@@ -49,5 +65,19 @@ Cypress.Commands.add('updateBookingWithToken', (id, token) => {
             }
         },
         "adittionalneeds": "Breakfast"
+    })
+});
+
+
+//DELETE
+Cypress.Commands.add('deleteBooking', (id, token) => {
+    cy.request({
+        method: 'DELETE',
+        failOnStatusCode: false,
+        url: `booking/${id}`,
+        headers: {
+            'Content-Type': 'application.json',
+            Cookie: `token=${token}`
+        }
     })
 });

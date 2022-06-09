@@ -33,17 +33,17 @@ Tag @acceptance:
     /GET
         Listar IDs das reservas (FEITO)
         Listar uma reserva específica(FEITO)
-        Listar IDs de reservas utilizando o filtro firstname
-        Listar IDs de reservas utilizando o filtro lastname
-        Listar IDs de reservas utilizando o filtro checkin
-        Listar IDs de reservas utilizando o filtro checkout
-        Listar IDs de reservas utilizando o filtro checkout and checkout
-        Listar IDs de reservas utilizando o filtro name, checkin and checkout date
+        Listar IDs de reservas utilizando o filtro firstname (FEITO)
+        Listar IDs de reservas utilizando o filtro lastname (FEITO)
+        Listar IDs de reservas utilizando o filtro checkin (FEITO)
+        Listar IDs de reservas utilizando o filtro checkout(FEITO)
+        Listar IDs de reservas utilizando o filtro checkout and checkout (FEITO)
+        Listar IDs de reservas utilizando o filtro name, checkin and checkout date (FEITO)
     /POST
-        Criar uma nova reserva
+        Criar uma nova reserva (FEITO)
     /PUT
         Alterar uma reserva usando o token (FEITO)
-        Alterar uma reserva usando o Basic auth
+        Alterar uma reserva usando o Basic auth (FEITO)
 
 
 Tag @e2e :

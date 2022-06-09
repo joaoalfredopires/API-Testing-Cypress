@@ -9,9 +9,22 @@ describe('Put Booking', () => {
                 cy.log(respostaAllBookings.body)
                 cy.updateBookingWithToken(respostaAllBookings.body[0].bookingid, respostaToken.body.token).then((response) => {
                     expect(response.status).to.eq(200)
-                    expect(response.body.firstname).to.eq("João")
+                    expect(response.body.firstname).not.to.be.null
                 })
             })
         })
     });
+
+    it('Alterar uma reserva usando Basic Auth - @acceptance', () => {
+        
+        cy.allBookings().then((respostaAllBookings) => {
+            cy.log(respostaAllBookings.body)
+            cy.updateBookingWithBasicAuth(respostaAllBookings.body[0].bookingid).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body.firstname).not.to.be.null
+            })
+        })
+        
+    });
+    
 });

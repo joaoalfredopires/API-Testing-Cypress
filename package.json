@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/joaoalfredopires/API-Testing-Cypress#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.2.0",
     "@hapi/joi": "^17.1.1",
     "cypress": "4.12.1",
     "cypress-select-tests": "^1.7.1",

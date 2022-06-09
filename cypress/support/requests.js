@@ -1,3 +1,14 @@
+import {faker} from '@faker-js/faker'
+
+function generateRandomDate() {
+
+    let randomYear = Math.floor(Math.random() * (2022 - 2020 + 1) ) + 2020;
+    let randomMonth = Math.floor(Math.random() * (12 - 1 + 1) ) + 1;
+    let randomDay = Math.floor(Math.random() * (30 - 1 + 1) ) + 1;
+
+    return `${randomYear}-${randomMonth}-${randomDay}`
+}
+
 //GET
 
 Cypress.Commands.add('allBookings', () => {
@@ -24,6 +35,37 @@ Cypress.Commands.add('specificBooking', (bookingID) => {
     })
 });
 
+Cypress.Commands.add('bookingWithNameFilter', (filter, name) => {  
+    cy.request({
+        method: "GET",
+        url: `/booking?${filter}=${name}`,
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add('bookingWithOneDateFilter', (filter, date) => {
+    cy.request({
+        method: "GET",
+        url: `/booking?${filter}=${date}`,
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add('bookingWithCheckoutCheckoutFilter', (filter1, date1, filter2, date2) => {
+    cy.request({
+        method: "GET",
+        url: `/booking?${filter1}=${date1}&${filter2}=${date2}`,
+        failOnStatusCode: false
+    })
+})
+
+Cypress.Commands.add('bookingWithAllFilters', (firstname, lastname, date1, date2) => {
+    cy.request({
+        method: "GET",
+        url: `/booking?firstname=${firstname}&lastname=${lastname}&checkin=${date1}&checkout=${date2}`,
+        failOnStatusCode: false
+    })
+})
 
 //POST
 
@@ -42,6 +84,28 @@ Cypress.Commands.add('token', () => {
     })
 })
 
+Cypress.Commands.add('createBooking', () => {
+    cy.request({
+        method: 'POST',
+        failOnStatusCode: false,
+        url: '/booking',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json'
+        },
+        body: {
+            "firstname": faker.name.firstName(),
+            "lastname": faker.name.lastName(),
+            "totalprice": 390,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
+            }
+        },
+        "adittionalneeds": "Breakfast"
+    })
+})
 
 //PUT
 
@@ -55,13 +119,36 @@ Cypress.Commands.add('updateBookingWithToken', (id, token) => {
             Cookie: `token=${token}`
         },
         body: {
-            "firstname": "João",
-            "lastname": "Pires",
+            "firstname": faker.name.firstName(),
+            "lastname": faker.name.lastName(),
             "totalprice": 150,
             "depositpaid": true,
             "bookingdates": {
-                "checkin": "2022-04-25",
-                "checkout": "2022-04-29"
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
+            }
+        },
+        "adittionalneeds": "Breakfast"
+    })
+});
+
+Cypress.Commands.add('updateBookingWithBasicAuth', (id) => {
+    cy.request({
+        method: 'PUT',
+        failOnStatusCode: false,
+        url: `/booking/${id}`,
+        headers: {
+            accept: "application/json",
+            Authorization: 'Basic YWRtaW46cGFzc3dvcmQxMjM='
+        },
+        body: {
+            "firstname": faker.name.firstName(),
+            "lastname": faker.name.lastName(),
+            "totalprice": 150,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
             }
         },
         "adittionalneeds": "Breakfast"

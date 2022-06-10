@@ -1,20 +1,7 @@
 # API-Testing-Cypress
 Projeto de estudo em automação de testes utilizando Cypress e Joi
 
-Cenários:
-    - Listar Id's das reservas
-    - Garantir o contrato do retorno da lista de reservas
-    - Alterar uma reserva usando token
-
-    Suítes:
-    - @acceptance
-        - Listar Id's das reservas
-        - Alterar uma reserva usando token
-
-    - @contracts
-        - Garantir o contrato do retorno da lista de reservas
-
-DESAFIO:
+Cenários do desafio:
 
 Tag @healthcheck:
     /HEALTHCHECK
@@ -29,7 +16,7 @@ Tag @contract :
 
 Tag @acceptance:
     /DELETE
-        Excluir um reserva com sucesso
+        Excluir um reserva com sucesso (FEITO)
     /GET
         Listar IDs das reservas (FEITO)
         Listar uma reserva específica(FEITO)

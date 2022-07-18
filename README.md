@@ -35,13 +35,13 @@ Tag @acceptance:
 
 Tag @e2e :
     /DELETE
-        Tentar excluir um reserva que não existe
-        Tentar excluir uma reserva sem autorização
+        Tentar excluir um reserva que não existe (FEITO)
+        Tentar excluir uma reserva sem autorização (FEITO)
     /GET
-        Visualizar erro de servidor 500 quando enviar filtro mal formatado
+        Visualizar erro de servidor 500 quando enviar filtro mal formatado (FEITO)
     /POST
-        Validar retorno 500 quando o payload da reserva estiver inválido
-        Validar a criacao de mais de um livro em sequencia
+        Validar retorno 500 quando o payload da reserva estiver inválido (FEITO) 
+        Validar a criacao de mais de um livro em sequencia (FEITO)
         Criar uma reserva enviando mais parametros no payload da reserva
         Validar retorno 418 quando o header Accept for invalido
     /PUT

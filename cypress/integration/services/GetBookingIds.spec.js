@@ -52,4 +52,10 @@ describe('Get booking Ids', () => {
         });
     });
 
+    it('Visualizar erro de servidor 500 quando enviar filtro mal formatado - @e2e', () => {  
+        cy.bookingWithWrongFilterFormat('Mary', 'Jackson', '2016-07-11', '2019-05-17').should((response) => {
+            expect(response.status).to.eq(500) //Utilizando o "?" após "booking" é retornada a lista completa de reservas caso haja erro na formatação
+        });                                    //Sem utilizar o "?" o erro é 404, ou seja, de qualquer fomra o statusCode <500> não é exibido
+    });
+
 });

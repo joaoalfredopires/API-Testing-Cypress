@@ -67,6 +67,14 @@ Cypress.Commands.add('bookingWithAllFilters', (firstname, lastname, date1, date2
     })
 })
 
+Cypress.Commands.add('bookingWithWrongFilterFormat', (firstname, lastname, date1, date2) => {
+    cy.request({
+        method: "GET",
+        url: `/booking$firstname=${firstname}&lastname=${lastname}&checkin=${date1}&checkout=${date2}`,
+        failOnStatusCode: false
+    })
+})
+
 //POST
 
 Cypress.Commands.add('token', () => {
@@ -105,7 +113,55 @@ Cypress.Commands.add('createBooking', () => {
         },
         "adittionalneeds": "Breakfast"
     })
-})
+});
+
+Cypress.Commands.add('createBookingWithInvalidPayload', () => {
+    cy.request({
+        method: 'POST',
+        failOnStatusCode: false,
+        url:'/booking',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json'
+        },
+        body: {
+            "firstname": 6630,
+            "lastname": 56,
+            "totalprice": 256,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
+            }
+        },
+        "aditionalneeds": "Breakfast"
+    })
+});
+
+Cypress.Commands.add('createBookingWithExtraParams', () => {
+    cy.request({
+        method: 'POST',
+        failOnStatusCode: false,
+        url:'/booking',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'application/json'
+        },
+        body: {
+            "firstname": 6630,
+            "lastname": 56,
+            "totalprice": 256,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
+            }
+        },
+        "aditionalneeds": "Breakfast",
+        "numberofchildren": 3,
+        "clientjob":"Software Developer"
+    })
+});
 
 //PUT
 

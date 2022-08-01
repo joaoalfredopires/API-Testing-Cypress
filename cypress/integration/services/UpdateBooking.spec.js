@@ -27,4 +27,28 @@ describe('Put Booking', () => {
         
     });
     
+    it('Tentar alterar uma reserva quando o token não for enviado - @e2e', () => {
+        cy.allBookings().then((respostaAllBookings) => {
+            cy.updateBookingWithToken(respostaAllBookings.body[0].bookingid, '').then((response) => {
+                expect(response.status).to.eq(200)
+            })
+        })
+    })
+
+    it('Tentar alterar uma reserva quando o token enviado for inválido - @e2e', () => {
+        cy.allBookings().then((respostaAllBookings) => {
+            cy.updateBookingWithToken(respostaAllBookings.body[0].bookingid, 'abc123').then((response) => {
+                expect(response.status).to.eq(200)
+            })
+        })
+    })
+
+    it('Tentar alterar uma reserva que não existe - @e2e', () => {
+        cy.token().then((respostaToken) => {
+            cy.updateBookingWithToken(999, respostaToken.body.token).then((response) => {
+                expect(response.status).to.eq(200)
+            })
+        })
+        
+    })
 });

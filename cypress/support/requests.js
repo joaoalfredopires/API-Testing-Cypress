@@ -148,8 +148,8 @@ Cypress.Commands.add('createBookingWithExtraParams', () => {
             accept: 'application/json'
         },
         body: {
-            "firstname": 6630,
-            "lastname": 56,
+            "firstname": faker.name.firstName(),
+            "lastname": faker.name.lastName(),
             "totalprice": 256,
             "depositpaid": true,
             "bookingdates": {
@@ -160,6 +160,29 @@ Cypress.Commands.add('createBookingWithExtraParams', () => {
         "aditionalneeds": "Breakfast",
         "numberofchildren": 3,
         "clientjob":"Software Developer"
+    })
+});
+
+Cypress.Commands.add('createBookingWithInvalidAccept', () => {
+    cy.request({
+        method: 'POST',
+        failOnStatusCode: false,
+        url:'/booking',
+        headers: {
+            'Content-Type': 'application/json',
+            accept: 'accept/invalido'
+        },
+        body: {
+            "firstname": faker.name.firstName(),
+            "lastname": faker.name.lastName(),
+            "totalprice": 256,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": generateRandomDate(),
+                "checkout": generateRandomDate()
+            }
+        },
+        "aditionalneeds": "Breakfast"
     })
 });
 

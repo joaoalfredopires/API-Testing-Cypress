@@ -32,8 +32,14 @@ describe('Create booking', () => {
 
     it('Criar uma reserva enviando mais parametros no payload da reserva - @e2e', () => {
         cy.createBookingWithExtraParams().should((response) => {
-            expect(response.status).to.eq(200)
+            expect(response.status).to.eq(200)  //Aplicação apenas ignora os parâmetros extra
             expect(response.body).not.to.be.null
         })
     })
-})
+
+    it('Validar retorno 418 quando o header Accept for invalido - @E2e', () => {
+        cy.createBookingWithInvalidAccept().should((response) => {
+            expect(response.status).to.eq(418)
+        })
+    })
+});
